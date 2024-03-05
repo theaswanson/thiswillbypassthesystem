@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+
+type Bypass = {
+  text: string;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const bypassesTs: Bypass[] = [
+    {
+      text: `
+      What the hell...why not
+      Hello 🔵 It's official. Signed at 8:16 PM. It was even on TV. Mine really turned blue. Don't forget that tomorrow starts the new Facebook rule (aka... new name, META) where they can use your photos. Don't forget the deadline is today!!! 
+      I do not authorize META, Facebook or any entity associated with Facebook to use my photos, information, messages or posts, past or future.
+      With this statement, I notify Facebook that
+      it is strictly prohibited to disclose, copy, distribute or take any other action against me based on this profile and/or its contents. Violation of privacy may be punishable by law.
+      Here's how to do it:
+      Hold your finger anywhere in this message and “copy” will appear. Click “copy”. Then go to your page, create a new post and place your finger anywhere in the empty field. “Paste” will appear and click Paste.
+      This will bypass the system….
+      He who does nothing consents.
+      `,
+    },
+  ];
 
   return (
     <>
+      <h1>This Will Bypass the System</h1>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {bypassesTs.map((bypass) => (
+          <p>{bypass.text}</p>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
