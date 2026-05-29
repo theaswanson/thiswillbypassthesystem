@@ -1,25 +1,30 @@
-import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
+import { useState } from "react";
 import "./App.css";
-import { getRandomPost } from "./post-service";
+import { Post } from "./Post";
+import { getRandomPostIndex, numberOfPosts } from "./post-service";
+import { useGetPost } from "./useGetPost";
 
 function App() {
-  const [post, setPost] = useState("");
-
-  useEffect(() => {
-    const loadRandomPost = async () => {
-      setPost(await getRandomPost());
-    };
-
-    loadRandomPost();
-  }, []);
+  const [postIndex, setPostIndex] = useState(getRandomPostIndex());
+  const { post, isLoading } = useGetPost(postIndex);
 
   return (
     <>
       <h1>This Will Bypass the System</h1>
+
       <div>
-        <Markdown>{post}</Markdown>
+        <h3>There are {numberOfPosts} known bypasses.</h3>
+        <button
+          disabled={isLoading}
+          onClick={() => setPostIndex(getRandomPostIndex())}
+        >
+          Load new bypass
+        </button>
       </div>
+
+      <br />
+
+      <Post post={post} isLoading={isLoading} />
     </>
   );
 }

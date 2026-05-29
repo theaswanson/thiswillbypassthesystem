@@ -1,16 +1,15 @@
-export const getRandomPost = async () => {
-  const randomPostIndex = (posts: Record<string, unknown>) => {
-    const randomInt = (max: number) => Math.floor(Math.random() * max);
+const posts = import.meta.glob<{ default: string }>("./posts/*.md");
 
-    const numberOfPosts = Object.keys(posts).length;
+export const numberOfPosts = Object.keys(posts).length;
 
-    return randomInt(numberOfPosts);
-  };
+export const getRandomPostIndex = () => {
+  const randomInt = (max: number) => Math.floor(Math.random() * max);
 
-  const posts = import.meta.glob<{ default: string }>("./posts/*.md");
-
-  return await fileContents(randomPostIndex(posts), posts);
+  return randomInt(numberOfPosts);
 };
+
+export const getPostContents = async (postIndex: number) =>
+  await fileContents(postIndex, posts);
 
 const fileContents = async (
   fileIndex: number,
@@ -19,7 +18,7 @@ const fileContents = async (
     () => Promise<{
       default: string;
     }>
-  >
+  >,
 ) => {
   // Get the path to the file
   const relativeFilePaths = Object.keys(files);
