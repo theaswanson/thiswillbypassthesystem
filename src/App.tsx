@@ -1,22 +1,22 @@
 import { useState } from "react";
 import "./App.css";
-import { Post } from "./Post";
-import { getRandomPostIndex, numberOfPosts } from "./post-service";
-import { useGetPost } from "./useGetPost";
+import { Bypass } from "./Bypass";
+import { getRandomBypassId, numberOfBypasses } from "./bypass-service";
+import { useGetBypass } from "./useGetBypass";
 
 function App() {
-  const [postIndex, setPostIndex] = useState(getRandomPostIndex());
-  const { post, isLoading } = useGetPost(postIndex);
+  const [bypassId, setBypassId] = useState(getRandomBypassId());
+  const { bypass, isLoading } = useGetBypass(bypassId);
 
   return (
     <>
       <h1>This Will Bypass the System</h1>
 
       <div>
-        <h3>There are {numberOfPosts} known bypasses.</h3>
+        <h3>There are {numberOfBypasses} known bypasses.</h3>
         <button
           disabled={isLoading}
-          onClick={() => setPostIndex(getRandomPostIndex())}
+          onClick={() => setBypassId(getRandomBypassId())}
         >
           Load new bypass
         </button>
@@ -24,7 +24,10 @@ function App() {
 
       <br />
 
-      <Post post={post} isLoading={isLoading} />
+      <Bypass
+        bypass={{ id: bypassId, contents: bypass }}
+        isLoading={isLoading}
+      />
     </>
   );
 }

@@ -1,10 +1,15 @@
 import Markdown from "react-markdown";
 
-export const Post = ({
-  post,
+export type BypassModel = {
+  id: number;
+  contents: string;
+};
+
+export const Bypass = ({
+  bypass: { id, contents },
   isLoading,
 }: {
-  post: string;
+  bypass: BypassModel;
   isLoading: boolean;
 }) => (
   <div>
@@ -13,7 +18,8 @@ export const Post = ({
       <code>Loading...</code>
     ) : (
       <div>
-        <Markdown>{post}</Markdown>
+        <h2>Bypass #{id}</h2>
+        <Markdown>{contents}</Markdown>
       </div>
     )}
     <hr />

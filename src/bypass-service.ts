@@ -1,15 +1,15 @@
-const posts = import.meta.glob<{ default: string }>("./posts/*.md");
+const bypasses = import.meta.glob<{ default: string }>("./posts/*.md");
 
-export const numberOfPosts = Object.keys(posts).length;
+export const numberOfBypasses = Object.keys(bypasses).length;
 
-export const getRandomPostIndex = () => {
+export const getRandomBypassId = () => {
   const randomInt = (max: number) => Math.floor(Math.random() * max);
 
-  return randomInt(numberOfPosts);
+  return randomInt(numberOfBypasses);
 };
 
-export const getPostContents = async (postIndex: number) =>
-  await fileContents(postIndex, posts);
+export const getBypassContents = async (bypassIndex: number) =>
+  await fileContents(bypassIndex, bypasses);
 
 const fileContents = async (
   fileIndex: number,
