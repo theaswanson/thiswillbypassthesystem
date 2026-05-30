@@ -35,7 +35,7 @@ export const Bypass = ({
         <code>Loading...</code>
       ) : (
         <div>
-          <h2>Bypass #{id}</h2>
+          <h2>Bypass #{id + 1}</h2>
           <button onClick={copyToClipboard}>
             {copySuccessful === null && <span>Copy 📋</span>}
             {copySuccessful === true && <span>Copied ✅</span>}
